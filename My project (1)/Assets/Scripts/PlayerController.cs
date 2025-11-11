@@ -1,0 +1,26 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerController : MonoBehaviour
+{
+    private Rigidbody rb;
+    private float movementX;
+    private float movementY;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    void OnMove(Inputvalue movementValue)
+    {
+        Vector2 movementVector = movementValue.Get<Vector2>();
+        
+    }
+
+    private void FixedUpdate()
+    {
+        rb.AddForce(movementVector);
+    }
+}
