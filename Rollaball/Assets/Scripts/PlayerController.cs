@@ -83,13 +83,24 @@ public class PlayerController : MonoBehaviour
  // Function to update the displayed count of "PickUp" objects collected.
  void SetCountText() 
     {
- // Update the count text with the current count.
         countText.text = "Count: " + count.ToString();
 
  // Check if the count has reached or exceeded the win condition.
  if (count >= 7)
         {
             winTextObject.SetActive(true);
+            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
         }
     }
+    private void OnCollisionEnter(Collision collision)
+       {
+   if (collision.gameObject.CompareTag("Enemy"))
+   {
+       // Destroy the current object
+       Destroy(gameObject); 
+       // Update the winText to display "You Lose!"
+       winTextObject.gameObject.SetActive(true);
+       winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+   }
+       }
 }
